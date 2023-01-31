@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HelloWorld //DO NOT change the namespace name
+{
+    
+    abstract class Employee
+    {
+        protected int empid;
+        protected string ename;
+        
+        public Employee(int Id , string Name)
+        {
+            this.empid = Id;
+            this.ename = Name;
+        }
+        
+        abstract public float calculateSalary();  
+    }
+     class ParmanentEmployee : Employee
+    {
+        protected int basic_pay;
+        public ParmanentEmployee(int Id , string Name ,int basicpay):base(Id,Name)
+        {
+            this.basic_pay = basicpay;
+        }
+        
+        //Implementation of abstract method
+        public override float calculateSalary()
+        {
+            float da = basic_pay * 0.10f;
+            float Pf = basic_pay * 0.12f;
+            float salary = basic_pay + da- Pf;
+            return salary;
+        }
+        
+    }
+    public class Program //DO NOT change the class name
+    {
+        public static void Main(String[] args)//DO NOT change the method signature
+        {
+            ParmanentEmployee PObj = new ParmanentEmployee(1,"John",7000);
+            float result = PObj.calculateSalary();
+            Console.WriteLine("Salary of Employee..." +result);
+        }
+    }
+}
