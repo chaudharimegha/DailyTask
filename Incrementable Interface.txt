@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+//Please check the Problem description and create the class, fields, properties and methods.
+//Implement code here
+
+public class Program
+{
+    public static void Main(string []args)
+    {
+        Programmer  p1 =  new Programmer ("Akash",30000,"JAVA");
+        Manager m1 =new Manager("Adam",50000,07);
+        p1.Increment();
+        p1.Print();
+        m1.Increment();
+        m1.Print();
+    }
+}
+
+public abstract class Employee 
+{
+    protected string name;
+    protected double salary;
+    
+    public Employee (string name , double salary)
+    {
+        this.name = name;
+        this.salary = salary;
+    }
+    public void Print()
+    {
+        Console.WriteLine("Name:" + name);
+        Console.WriteLine("Salary:" +salary);
+    }
+    
+}
+
+interface IIncrementable
+{
+    double Increment();
+}
+
+public  class Manager : Employee , IIncrementable
+{
+     int teamId;
+    public Manager(string name , double salary , int teamId) : base(name,salary)
+    {
+        this.teamId = teamId;
+    }
+    public double Increment()
+    {
+        salary = salary +(salary* .50);
+        return salary;
+    }
+}
+public class Programmer   :Employee , IIncrementable
+{
+    public string domain;
+    public Programmer (string name , double salary ,string domain):base(name,salary)
+    {
+        this.domain = domain;
+    }
+    public double Increment()
+    {
+        salary = salary+(salary* .10);
+        return salary;
+    }
+}
+
+
+
+
